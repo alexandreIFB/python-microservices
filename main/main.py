@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from flask import Flask, jsonify, abort
 from flask_cors import CORS
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import UniqueConstraint
 import requests
@@ -12,6 +13,8 @@ app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql://root:root@db/main'
 CORS(app)
 
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
 
 
 @dataclass
