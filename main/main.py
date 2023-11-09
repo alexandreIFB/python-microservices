@@ -44,8 +44,12 @@ def index():
 
 @app.route('/api/products/<int:id>/like', methods=['POST'])
 def like(id):
-    req = requests.get('http://docker.for.mac.localhost:8000/api/user')
+    req = requests.get('http://docker.for.mac.localhost:8002/api/user')
     json = req.json()
+
+
+    # sempre pega o mesmo ID (primeiro achado na tabela).
+    print(json['id'])
 
     try:
         productUser = ProductUser(user_id=json['id'], product_id=id)
